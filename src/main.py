@@ -1,10 +1,13 @@
 from datetime import date
-
 from fastapi import FastAPI, Query, Depends
 from pydantic import BaseModel
 
+from src.bookings.router import router as bookings_router
+
+
 app = FastAPI()
 
+app.include_router(bookings_router)
 
 class SHotel(BaseModel):
     address: str
@@ -28,7 +31,7 @@ class HotelsSearchParams:
         self.stars = stars
 
 
-@app.get("/hotels/")
+@app.get("/hotels")
 async def say_hello(search_params: HotelsSearchParams = Depends()):
     return search_params
 
