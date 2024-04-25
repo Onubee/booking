@@ -1,4 +1,7 @@
 from fastapi import APIRouter
+from sqlalchemy import select
+from src.bookings.models import Booking
+from src.database import async_session_maker
 
 
 router = APIRouter(
@@ -9,10 +12,10 @@ router = APIRouter(
 
 @router.get("")
 async def get_bookings():
-    pass
+    async with async_session_maker() as session:
+        query = select(Booking)
+        result = await session.execute(query)
+        return result.scalars().all()
 
 
-@router.get("/{booking_id}")
-async def get_bookings(booking_id):
-    pass
 
