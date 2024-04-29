@@ -3,6 +3,7 @@ from src.database import Base
 
 
 class User(Base):
+    """Модель пользователя"""
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, nullable=False)

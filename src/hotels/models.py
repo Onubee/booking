@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String, JSON, ForeignKey
 
 
 class Hotel(Base):
+    """Модель отеля"""
     __tablename__ = 'hotel'
 
     id = Column(Integer, primary_key=True, nullable=False)
@@ -14,6 +15,7 @@ class Hotel(Base):
 
 
 class Room(Base):
+    """Модель комнаты"""
     __tablename__ = "room"
 
     id = Column(Integer, primary_key=True, nullable=False)

@@ -9,6 +9,7 @@ from src.users.service import UserService
 
 
 def get_token(request: Request):
+    """Получение jwt токена"""
     token = request.cookies.get("booking_access_token")
     if not token:
         raise UserNotExistsException()
@@ -16,6 +17,7 @@ def get_token(request: Request):
 
 
 async def get_current_user(token: str = Depends(get_token)):
+    """Получение текущего пользователя"""
     try:
         payload = jwt.decode(
             token, settings.SECRET_KEY, settings.ALGORITHM

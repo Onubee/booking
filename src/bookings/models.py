@@ -4,6 +4,7 @@ from src.database import Base
 
 
 class Booking(Base):
+    """Модель бронирования отелей"""
     __tablename__ = "booking"
 
     id = Column(Integer, primary_key=True)
