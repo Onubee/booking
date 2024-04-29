@@ -4,10 +4,10 @@ from pydantic import BaseModel
 
 from src.bookings.router import router as bookings_router
 
-
 app = FastAPI()
 
 app.include_router(bookings_router)
+
 
 class SHotel(BaseModel):
     address: str
@@ -34,14 +34,3 @@ class HotelsSearchParams:
 @app.get("/hotels")
 async def say_hello(search_params: HotelsSearchParams = Depends()):
     return search_params
-
-
-class SBooking(BaseModel):
-    room_id: int
-    date_from: date
-    date_to: date
-
-
-@app.post("/bookings")
-def add_booking(booking: SBooking):
-    pass
